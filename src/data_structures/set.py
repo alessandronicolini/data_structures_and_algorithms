@@ -95,14 +95,22 @@ class Set(Generic[T]):
                 difference_set.add(item)
         return difference_set
 
-    def __iter__(self) -> Set[T]:
+    def __iter__(self) -> _SetIterator:
+        return _SetIterator(self._list)
+
+
+class _SetIterator:
+    def __init__(self, elements: list[T]) -> None:
+        self._elements = elements
         self._cur_ndx = 0
+
+    def __iter__(self) -> _SetIterator:
         return self
 
     def __next__(self) -> T:
-        if self._cur_ndx < len(self):
-            item = self._list[self._cur_ndx]
+        if self._cur_ndx < len(self._elements):
+            entry = self._elements[self._cur_ndx]
             self._cur_ndx += 1
-            return item
+            return entry
         else:
             raise StopIteration
