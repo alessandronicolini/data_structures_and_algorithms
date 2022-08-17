@@ -5,7 +5,9 @@ T = TypeVar('T')
 
 
 class Vector(Generic[T]):
-    """Implements the functionalities of a python list, except it can only contain the same data type items."""
+    """
+    Implements the functionalities of a python list, except it can only contain the same data type items.
+    """
 
     def __init__(self):
         self._array: Array[T] = Array(2)
@@ -211,7 +213,9 @@ class Vector(Generic[T]):
 
 
 class _VectorIterator:
-    """Iterator class for Vector"""
+    """
+    Helper class that implements the iterator for the Vector ADT
+    """
 
     def __init__(self, vector: Vector[T]):
         self._vector_ref = vector

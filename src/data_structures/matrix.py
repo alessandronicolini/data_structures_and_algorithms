@@ -47,7 +47,7 @@ class Matrix(Generic[T]):
 
     def __add__(self, other: Matrix[T]) -> Matrix[T]:
         """
-        Implements the sum operator between two matrices
+        Implements the sum operator between two matrices.
         """
         assert self.num_rows == other.num_rows and self.num_cols == other.num_cols, \
             "The matrices must have same dimensions!"
@@ -59,7 +59,7 @@ class Matrix(Generic[T]):
 
     def __sub__(self, other: Matrix[T]) -> Matrix[T]:
         """
-        Implements the subtraction operator between two matrices
+        Implements the subtraction operator between two matrices.
         """
         assert self.num_rows == other.num_rows and self.num_cols == other.num_cols, \
             "The matrices must have same dimensions!"

@@ -100,6 +100,9 @@ class Set(Generic[T]):
 
 
 class _SetIterator:
+    """
+    Helper class that implements the iterator fot the Set ADT.
+    """
     def __init__(self, elements: list[T]) -> None:
         self._elements = elements
         self._cur_ndx = 0

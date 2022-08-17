@@ -4,11 +4,14 @@ T = TypeVar('T')
 
 
 class Array2D(Generic[T]):
-    """Implementation of a 2-dimensional Array Abstract Data Type"""
+    """
+    Implementation of a 2-dimensional Array Abstract Data Type.
+    """
 
     def __init__(self, num_rows: int, num_cols: int) -> None:
         """
-        Array2D constructor
+        Array2D constructor.
+
         :param num_rows: number of rows
         :param num_cols: number of columns
         """

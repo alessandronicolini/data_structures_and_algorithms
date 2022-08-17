@@ -68,6 +68,7 @@ class Map(Generic[K, V]):
     def value_of(self, key: K) -> V:
         """
         Returns the data record associated with the given key. The key must exist in the map or an exception is raised.
+
         :param key: the given key
         :return: the value associated to the given key
         """
@@ -78,6 +79,7 @@ class Map(Generic[K, V]):
     def __iter__(self) -> _MapIterator:
         """
         Creates and returns an iterator that can be used to iterate over the keys in the map.
+
         :return: a custom map iterator class called _MapIterator
         """
         return _MapIterator(self._entry_list)
@@ -85,7 +87,7 @@ class Map(Generic[K, V]):
 
 class _MapIterator:
     """
-    Support class that implements a map entry.
+    Helper class that implements a map entry.
     """
     def __init__(self, entries: list[_MapEntry]) -> None:
         self._map_entries = entries
@@ -105,7 +107,7 @@ class _MapIterator:
 
 class _MapEntry(Generic[K, V]):
     """
-    Support class that implements the Map iterator
+    Helper class that implements the iterator for the Map ADT
     """
     def __init__(self, key: K, value: V) -> None:
         self._key = key

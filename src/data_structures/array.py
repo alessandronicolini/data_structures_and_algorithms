@@ -6,11 +6,14 @@ T = TypeVar('T')
 
 
 class Array(Generic[T]):
-    """Implementation of a unidimensional Array Abstract Data Typ"""
+    """
+    Implementation of a unidimensional Array Abstract Data Type.
+    """
 
     def __init__(self, size: int) -> None:
         """
-        Array constructor
+        Array constructor.
+
         :param size: the size of the array
         """
         assert size > 0, f"`size` must be greater than zero but it was {size}!"
@@ -24,7 +27,8 @@ class Array(Generic[T]):
 
     def __getitem__(self, index: int) -> T:
         """
-        Get the element at a provided index
+        Get the element at a provided index.
+
         :param index: the index of the element we want to get
         :return: the element at the specified index
         """
@@ -33,7 +37,8 @@ class Array(Generic[T]):
 
     def __setitem__(self, index: int, value: T) -> None:
         """
-        Set the element at a certain index
+        Set the element at a certain index.
+
         :param index: the index of the element we want to set
         :param value: the new value
         """
@@ -42,7 +47,8 @@ class Array(Generic[T]):
 
     def clear(self, value: T) -> None:
         """
-        Clear the array by setting all the elements at the same value
+        Clear the array by setting all the elements at the same value.
+
         :param value: specified value used to clear the array
         """
         for i in range(len(self)):
@@ -52,6 +58,11 @@ class Array(Generic[T]):
         return _ArrayIterator(self._elements)
 
     def __str__(self) -> str:
+        """
+        Defines the string representation of the array.
+
+        :return: the string representation.
+        """
         string = f"[{self._elements[0]}, "
         for i in range(1, self._size-1):
             string += f"{self._elements[i]}, "
@@ -60,7 +71,9 @@ class Array(Generic[T]):
 
 
 class _ArrayIterator:
-    """Iterator class for the Array"""
+    """
+    Helper class that implements the iterator for the Array ADT
+    """
 
     def __init__(self, array: Array[T]):
         self._array_ref = array
