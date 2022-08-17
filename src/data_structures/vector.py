@@ -37,8 +37,8 @@ class Vector(Generic[T]):
         new array with doubled size is created, the current items are copied, the new item is appended and the old array
         is deleted.
 
-        :param item: the new item that is appended at the end of the vector
-        :return: None
+        Args:
+            item: the new item that is appended at the end of the vector.
         """
         insertion_index = len(self)
 
@@ -76,9 +76,10 @@ class Vector(Generic[T]):
         the other elements (if any). If there is no room for a new item, a new underlying array with doubled size is
         created.
 
-        :param index: the positional index where we want insert the new item
-        :param item: the new item
-        :return: None
+        Args:
+            index: an integer representing the positional index where we want to insert the new item.
+            item: the new item.
+
         """
         assert 0 <= index < len(self), f"The index must be between 0 and {len(self) - 1}, but it was {index}!"
 
@@ -124,8 +125,11 @@ class Vector(Generic[T]):
         half the available space, a new array is created with halved size, the current items are copied into the new
         array and the old array is deleted.
 
-        :param index: the positional index where we want to remove the item
-        :return: the removed item
+        Args:
+            index: an integer representing the positional index of the item we want to remove.
+
+        Returns:
+            the removed item.
         """
         assert len(self) > 0, f"There are no items in the vector!"
         assert 0 <= index < len(self), f"The index must be between 0 and {len(self) - 1}, but it was {index}!"
@@ -163,8 +167,11 @@ class Vector(Generic[T]):
         """
         Returns the index of an item, if exist in the vector.
 
-        :param item: the item of which we want to get the index
-        :return: the positional index of the provided item
+        Args:
+            item: the item of which we want to get the index.
+
+        Returns:
+            the positional integer index of the given item.
         """
         assert item in self, f"The item {item} is not in the vector!"
         for i in range(len(self)):
@@ -175,8 +182,8 @@ class Vector(Generic[T]):
         """
         Appends all the elements of another vector to the current vector.
 
-        :param other: the other vector
-        :return: None
+        Args:
+            other: the other Vector.
         """
         for item in other:
             self.append(item)
@@ -185,9 +192,12 @@ class Vector(Generic[T]):
         """
         Gets a sub vector that contains the elements between the provided positional indexes (limits included).
 
-        :param index_from: start positional index
-        :param index_to: end positional index
-        :return: a Vector object
+        Args:
+            index_from: start positional index.
+            index_to: end positional index.
+
+        Returns:
+            the resulting Vector.
         """
         assert 0 <= index_from < len(self), \
             f"The start index must be between 0 and {len(self) - 1}, but it was {index_from}!"
