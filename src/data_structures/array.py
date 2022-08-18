@@ -1,20 +1,21 @@
 from __future__ import annotations
 from typing import TypeVar, Generic
 import ctypes
-
 T = TypeVar('T')
 
 
 class Array(Generic[T]):
     """
-    Implementation of a unidimensional Array Abstract Data Type.
+    Implementation of a 1D Array Abstract Data Type.
     """
 
     def __init__(self, size: int) -> None:
         """
-        Array constructor.
+        Creates a one-dimensional array consisting of `size` elements with each element initially set to None. Size must
+        be greater than zero.
 
-        :param size: the size of the array
+        Args:
+            size (int): The size of the array.
         """
         assert size > 0, f"`size` must be greater than zero but it was {size}!"
         self._size = size
@@ -23,45 +24,63 @@ class Array(Generic[T]):
         self.clear(None)
 
     def __len__(self) -> int:
+        """
+        Returns:
+            The length or number of elements in the array.
+        """
         return self._size
 
     def __getitem__(self, index: int) -> T:
         """
-        Get the element at a provided index.
+        Returns the value stored in the array at element position `index`. The `index` argument must be within the valid
+        range.
 
-        :param index: the index of the element we want to get
-        :return: the element at the specified index
+        Args:
+            index (int): The index of the element we want to get.
+
+        Returns:
+            The element at the specified index.
         """
         assert 0 <= index <= len(self), f"`index` must be in range [0, {len(self)-1}] but it was {index}!"
         return self._elements[index]
 
     def __setitem__(self, index: int, value: T) -> None:
         """
-        Set the element at a certain index.
+        Modifies the contents of the array element at position `index` to contain `value`. The `index` must be within
+        the valid range.
 
-        :param index: the index of the element we want to set
-        :param value: the new value
+        Args:
+            index (int): The index of the element we want to set.
+            value: The new value.
         """
         assert 0 <= index <= len(self), f"`index` must be in range [0, {len(self)-1}] but it was {index}!"
         self._elements[index] = value
 
     def clear(self, value: T) -> None:
         """
-        Clear the array by setting all the elements at the same value.
+        Clears the array by setting every element to `value`.
 
-        :param value: specified value used to clear the array
+        Args:
+            value: Specified value used to clear the array.
         """
         for i in range(len(self)):
             self._elements[i] = value
 
     def __iter__(self) -> _ArrayIterator:
+        """
+        Creates and returns an iterator that can be used to traverse the elements of the array.
+
+        Returns:
+            An  `_ArrayIterator` instance.
+        """
         return _ArrayIterator(self._elements)
 
     def __str__(self) -> str:
         """
         Defines the string representation of the array.
 
-        :return: the string representation.
+        Returns:
+            The string representation.
         """
         string = f"[{self._elements[0]}, "
         for i in range(1, self._size-1):
@@ -72,7 +91,7 @@ class Array(Generic[T]):
 
 class _ArrayIterator:
     """
-    Helper class that implements the iterator for the Array ADT
+    Helper class that implements the iterator for the Array ADT.
     """
 
     def __init__(self, array: Array[T]):
