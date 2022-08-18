@@ -29,8 +29,8 @@ class Array(Generic[T]):
         return self._size
 
     def __getitem__(self, index: int) -> T:
-        """Returns the value stored in the array at element position `index`. The `index` argument must be within the valid
-        range.
+        """Returns the value stored in the array at element position `index`. The `index` argument must be within the
+        valid range.
 
         Args:
             index (int): The index of the element we want to get.
@@ -56,7 +56,7 @@ class Array(Generic[T]):
         """Clears the array by setting every element to `value`.
 
         Args:
-            value: Specified value used to clear the array.
+            value: The value used to clear the array.
         """
         for i in range(len(self)):
             self._elements[i] = value
