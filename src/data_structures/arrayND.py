@@ -5,9 +5,7 @@ T = TypeVar('T')
 
 
 class MultiArray(Generic[T]):
-    """
-    Implements the Multidimensional Array Abstract Data Type as an abstract view of a one-dimensional array
-    """
+    """Implements the Multidimensional Array Abstract Data Type as an abstract view of a one-dimensional array."""
 
     def __init__(self, *dimensions: int) -> None:
         assert len(dimensions) > 1, "A MultiArray must have 2 or more dimensions!"
@@ -23,34 +21,42 @@ class MultiArray(Generic[T]):
         self._array: Array[T] = Array(size)
 
     def length(self, dim: int) -> int:
-        """
-        Computes the size of a dimension given its index, if it within the correct range.
+        """Computes the size of a dimension given its index. The index of the dimension must be within the correct
+        range.
 
-        :param dim: the index of the dimension
-        :return: the size of the dimension as an int value
+        Args:
+            dim (int): The index of the dimension.
+
+        Returns:
+            The size of the dimension.
         """
         assert 0 <= dim < len(self._dims), "Dimension component out of range!"
         return self._dims[dim]
 
     @property
     def num_dims(self) -> int:
-        """
-        :return: the number of dimensions of the multidimensional array
+        """Returns the number of dimensions of the ND array.
+
+        Returns:
+            The number of dimensions.
         """
         return self._num_dims
 
     @property
     def size(self) -> int:
-        """
-        :return: the total capacity of the multidimensional array
+        """Returns the total capacity of the ND array.
+
+        Returns:
+            The total capacity.
         """
         return self._size
 
     def _compute_offsets(self) -> Array[int]:
-        """
-        Helper method that computes the offsets necessary for the abstract interpretation.
+        """Helper method that computes the offsets necessary for the abstract interpretation of the actual 1D array that
+        stores the values.
 
-        :return: int array of offsets
+        Returns:
+            An int array of offsets values.
         """
         offsets = Array(self._num_dims)
         prod = 1
@@ -60,12 +66,14 @@ class MultiArray(Generic[T]):
         return offsets
 
     def _compute_index(self, coords: tuple[int, ...]) -> int:
-        """
-        Helper method that computes the corresponding index of the one-dimensional array cell given the coordinates
+        """Helper method that computes the corresponding index of the one-dimensional array cell given the coordinates
         of a multidimensional array cell.
 
-        :param coords: the coordinates of a cell of the multidimensional array
-        :return: the index of the corresponding cell of the one-dimensional array
+        Args:
+            coords: The coordinates of a cell of the ND array.
+
+        Returns:
+            The index of the corresponding cell of the 1D array.
         """
         assert len(coords) == self._num_dims, "Wrong number of dimensions!"
         index = 0
@@ -75,31 +83,31 @@ class MultiArray(Generic[T]):
         return index
 
     def clear(self, value: T) -> None:
-        """
-        Sets all the cells of the array to the same given value.
+        """Sets all the cells of the array to the same given value.
 
-        :param value: the given value with which the array will be populated
-        :return: None
+        Args:
+            value: The given value with which the array will be populated.
         """
         self._array.clear(value)
 
     def __getitem__(self, coords: tuple[int, ...]) -> T:
-        """
-        Lets you obtain the value od the cell indexed by the given coordinates.
+        """Returns the value of the cell indexed by the coordinates (i1, ..., iN).
 
-        :param coords: the coordinates of a cell in the array
-        :return: the content of the cell
+        Args:
+            coords: The coordinates (i1, ..., iN) of a cell of the ND array.
+
+        Returns:
+            The content of the cell indexed by the coordinates `coords`.
         """
         index = self._compute_index(coords)
         return self._array[index]
 
     def __setitem__(self, coords: tuple[int, ...], value: T) -> None:
-        """
-        Lets you set the value of the cell indexed by the given coordinates.
+        """Updates the value of the cell indexed by the coordinates (i1, ..., iN).
 
-        :param coords: the coordinates of a cell
-        :param value: the value that will be stored into the cell indexed by coords
-        :return: None
+        Args:
+            coords: The coordinates (i1, ..., iN) of a cell.
+            value: The value that will be stored into the cell indexed by `coords`.
         """
         index = self._compute_index(coords)
         self._array[index] = value
