@@ -5,14 +5,11 @@ T = TypeVar('T')
 
 
 class Array(Generic[T]):
-    """
-    Implementation of a 1D Array Abstract Data Type.
-    """
+    """Implementation of a 1D Array Abstract Data Type."""
 
     def __init__(self, size: int) -> None:
-        """
-        Creates a one-dimensional array consisting of `size` elements with each element initially set to None. Size must
-        be greater than zero.
+        """Creates a one-dimensional array consisting of `size` elements with each element initially set to None. Size
+        must be greater than zero.
 
         Args:
             size (int): The size of the array.
@@ -24,15 +21,15 @@ class Array(Generic[T]):
         self.clear(None)
 
     def __len__(self) -> int:
-        """
+        """Computes the array length.
+
         Returns:
             The length or number of elements in the array.
         """
         return self._size
 
     def __getitem__(self, index: int) -> T:
-        """
-        Returns the value stored in the array at element position `index`. The `index` argument must be within the valid
+        """Returns the value stored in the array at element position `index`. The `index` argument must be within the valid
         range.
 
         Args:
@@ -45,8 +42,7 @@ class Array(Generic[T]):
         return self._elements[index]
 
     def __setitem__(self, index: int, value: T) -> None:
-        """
-        Modifies the contents of the array element at position `index` to contain `value`. The `index` must be within
+        """Modifies the contents of the array element at position `index` to contain `value`. The `index` must be within
         the valid range.
 
         Args:
@@ -57,8 +53,7 @@ class Array(Generic[T]):
         self._elements[index] = value
 
     def clear(self, value: T) -> None:
-        """
-        Clears the array by setting every element to `value`.
+        """Clears the array by setting every element to `value`.
 
         Args:
             value: Specified value used to clear the array.
@@ -67,8 +62,7 @@ class Array(Generic[T]):
             self._elements[i] = value
 
     def __iter__(self) -> _ArrayIterator:
-        """
-        Creates and returns an iterator that can be used to traverse the elements of the array.
+        """Creates and returns an iterator that can be used to traverse the elements of the array.
 
         Returns:
             An  `_ArrayIterator` instance.
@@ -76,8 +70,7 @@ class Array(Generic[T]):
         return _ArrayIterator(self._elements)
 
     def __str__(self) -> str:
-        """
-        Defines the string representation of the array.
+        """Defines the string representation of the array.
 
         Returns:
             The string representation.
@@ -90,9 +83,7 @@ class Array(Generic[T]):
 
 
 class _ArrayIterator:
-    """
-    Helper class that implements the iterator for the Array ADT.
-    """
+    """Helper class that implements the iterator for the Array ADT."""
 
     def __init__(self, array: Array[T]):
         self._array_ref = array
