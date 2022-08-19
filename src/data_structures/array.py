@@ -5,7 +5,11 @@ T = TypeVar('T')
 
 
 class Array(Generic[T]):
-    """Implementation of a 1D Array Abstract Data Type."""
+    """Implementation of a 1D Array Abstract Data Type.
+
+    An **array** is a data structure that has a fixed **size** and a fixed type, its elements are stored contiguously
+    in memory and can be accessed in constant time.
+    """
 
     def __init__(self, size: int) -> None:
         """Creates a one-dimensional array consisting of `size` elements with each element initially set to None. Size
