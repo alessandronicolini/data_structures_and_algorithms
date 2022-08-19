@@ -27,7 +27,7 @@ def sorted_linear_search(collection:  Sequence[T], element: T) -> bool:
     Time complexity is O(n), if the elements in the collection are accessible in a constant time.
 
     Args:
-        collection: a collection of elements that implements both the __len__ and __getitem__ dunder methods.
+        collection: a collection of sorted elements that implements both the __len__ and __getitem__ dunder methods.
         element: the element we want to find in the collection.
 
     Returns:
