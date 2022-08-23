@@ -46,7 +46,7 @@ def binary_search(collection: Sequence[T], element: T) -> bool:
     """The sorted collection is not linearly traversed, but with a divide-and-conquer technique the time complexity is
     reduced to O(log n).
 
-        Args:
+    Args:
         collection: a collection of sorted elements, it implements both the __len__ and __getitem__ dunder methods.
         element: the element we want to find in the collection.
 
