@@ -5,7 +5,7 @@ T = TypeVar('T')
 def bubble_sort(collection: MutableSequence[T]) -> None:
     """Iterates over the elements of the given collection multiple times, each time the largest element is swapped to
     the end of the collection and the next iteration does not take into account the already ordered elements. The time
-    complexity is n*(n-1)/2 => O(n^2).
+    complexity is n*(n-1)/2 - n => O(n^2).
 
     Args:
         collection: a collection of elements, it implements the __len__, __getitem__ and __setitem__ dunder methods.
