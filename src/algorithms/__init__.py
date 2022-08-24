@@ -1,2 +1,2 @@
 from searching import linear_search, sorted_linear_search, binary_search
-from sorting import bubble_sort, insertion_sort
+from sorting import bubble_sort, selection_sort

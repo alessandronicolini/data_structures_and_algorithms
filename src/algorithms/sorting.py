@@ -28,7 +28,7 @@ def bubble_sort(collection: MutableSequence[T]) -> None:
                 collection[j] = tmp
 
 
-def insertion_sort(collection: MutableSequence[T]) -> None:
+def selection_sort(collection: MutableSequence[T]) -> None:
     """
     Iterates over the elements of the given collection multiple times, each time the starting index is incremented and
     the minimum element is swapped with the element at the starting index. The time complexity is O(n^2) as for the
